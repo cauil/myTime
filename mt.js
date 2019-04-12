@@ -1,14 +1,14 @@
 export default function createStore(reducer) {
 
   let state = null
-  const listeners = []
+  let listeners = []
 
   function getState() {
     return state
   }
 
   function dispatch(action) {
-    state = reducer(action)
+    state = reducer(state, action)
 
     listeners.forEach(listener => listener())
   }
@@ -17,9 +17,7 @@ export default function createStore(reducer) {
     listeners.push(listener)
 
     return function unsubscribe() {
-      const index = listeners.indexOf(listener)
-
-      listeners.splice(index, 1)
+      listeners = listeners.filter(l => l !== listener)
     }
   }
 
