@@ -1,7 +1,11 @@
-import createStore from './mt.js'
-import combineReducers from './combineReducers.js'
+import createStore from './mt'
+import combineReducers from './combineReducers'
+import compose from './compose'
+import applyMiddleware from './applyMiddleware'
 
-export default {
+export {
   createStore,
-  combineReducers
+  combineReducers,
+  compose,
+  applyMiddleware
 }

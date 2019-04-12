@@ -1,7 +1,11 @@
-export default function createStore(reducer) {
+export default function createStore(reducer, enhancer) {
 
   let state = null
   let listeners = []
+
+  if (typeof enhancer === 'function') {
+    return enhancer(createStore)(reducer)
+  }
 
   function getState() {
     return state
